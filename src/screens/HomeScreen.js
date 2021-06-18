@@ -9,6 +9,7 @@ import {
 import {fetchMovies, fetchMoviesClean} from '../../redux/actions';
 import LoadingAtom from '../components/atoms/LoadingAtom';
 import {connect} from 'react-redux';
+import FastImage from 'react-native-fast-image';
 import {
   Layout,
   Text,
@@ -60,10 +61,22 @@ const HomeScreen = ({
     getMovies(pageNumber - 1);
   };
   const renderItem = ({item, index}) => (
-    <Card style={{flex: 1}} key={item.imdbID}>
-      <Text>{item.Title}</Text>
-      <Text>{item.Year}</Text>
-      <Text>{item.Type}</Text>
+    <Card style={{flex: 1, flexDirection: 'row'}} key={item.imdbID}>
+      <Layout style={{flex: 0.8, flexDirection: 'column'}}>
+        <Text>{item.Title}</Text>
+        <Text>{item.Year}</Text>
+        <Text>{item.Type}</Text>
+      </Layout>
+      <Layout style={{flex: 0.2, flexDirection: 'column'}}>
+        <FastImage
+          style={{width: 200, height: 200}}
+          source={{
+            uri: item.Poster,
+            priority: FastImage.priority.high,
+          }}
+          resizeMode={FastImage.resizeMode.stretch}
+        />
+      </Layout>
     </Card>
   );
   return (
