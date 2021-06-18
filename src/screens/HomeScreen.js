@@ -68,14 +68,16 @@ const HomeScreen = ({
         <Text>{item.Type}</Text>
       </Layout>
       <Layout style={{flex: 0.2, flexDirection: 'column'}}>
-        <FastImage
-          style={{width: 200, height: 200}}
-          source={{
-            uri: item.Poster,
-            priority: FastImage.priority.high,
-          }}
-          resizeMode={FastImage.resizeMode.stretch}
-        />
+        {item.Poster && item.Poster!="N/A" && (
+          <FastImage
+            style={{width: 200, height: 200}}
+            source={{
+              uri: item.Poster!=null && item.Poster!="N/A"?item.Poster:"http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg",
+              priority: FastImage.priority.normal,
+            }}
+            resizeMode={FastImage.resizeMode.stretch}
+          />
+        )}
       </Layout>
     </Card>
   );
