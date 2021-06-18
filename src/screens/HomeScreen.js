@@ -35,9 +35,6 @@ const HomeScreen = ({
     }
   }, [firstLoad]);
   useEffect(() => {
-    console.log(movies);
-  }, [movies]);
-  useEffect(() => {
     if (error) {
       if (!error.includes('negative')) {
         Alert.alert(
